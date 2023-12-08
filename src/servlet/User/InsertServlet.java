@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/insert")
+@WebServlet("/Users/insert")
 public class InsertServlet extends HttpServlet {
 
     @Override

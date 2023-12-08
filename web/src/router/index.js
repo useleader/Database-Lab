@@ -5,7 +5,8 @@ const routes = [
     {
         path: '/',
         redirect: '/movielist'
-    }, {
+    },
+    {
         path: "/",
         name: "Home",
         component: Home,
@@ -17,14 +18,16 @@ const routes = [
                     title: '个人中心'
                 },
                 component: () => import (/* webpackChunkName: "user" */ '../views/User.vue')
-            }, {
+            },
+            {
                 path: '/movielist',
                 name: 'movielist',
                 meta: {
                     title: '电影列表'
                 },
                 component: () => import (/* webpackChunkName: "editor" */ '../views/MovieList.vue')
-            }, {
+            },
+            {
                 path: '/seniorsearch',
                 name: 'seniorsearch',
                 meta: {
@@ -33,7 +36,8 @@ const routes = [
                 component: () => import (/* webpackChunkName: "editor" */ '../views/SeniorSearch.vue')
             }
         ]
-    }, {
+    },
+    {
         path: "/login",
         name: "Login",
         meta: {
