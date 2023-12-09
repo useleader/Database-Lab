@@ -14,7 +14,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet("/Users/insert")
 public class InsertServlet extends HttpServlet {
@@ -38,7 +37,7 @@ public class InsertServlet extends HttpServlet {
         User user = new User();
 
 //        user.setId(Integer.valueOf(id));
-        user.setUsername(name);
+        user.setName(name);
         user.setPassword(password);
         user.setEmail(email);
 

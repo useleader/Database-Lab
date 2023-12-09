@@ -37,7 +37,7 @@ public class UpdateServlet extends HttpServlet {
 
         User user = new User();
         user.setId(id);
-        user.setUsername(name);
+        user.setName(name);
         user.setPassword(password);
         user.setEmail(email);
 

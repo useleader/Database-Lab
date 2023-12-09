@@ -56,7 +56,7 @@ public class UserDao {
             pstmt = conn.prepareStatement("insert into users(id, name, password, email) values (?, ?, ?, ?);");  // 问号？是占位符
             // 传递参数
             pstmt.setInt(1, id);
-            pstmt.setString(2, u.getUsername());
+            pstmt.setString(2, u.getName());
             pstmt.setString(3, u.getPassword());
             pstmt.setString(4, u.getEmail());
             // 执行insert操作，并获取被更新的行数
@@ -99,7 +99,7 @@ public class UserDao {
         ResultSet rs = null;
         try{
             pstmt = conn.prepareStatement("update users set name = ?, password = ?, email = ? where id = ?");
-            pstmt.setString(1, u.getUsername());
+            pstmt.setString(1, u.getName());
             pstmt.setString(2, u.getPassword());
             pstmt.setString(3, u.getEmail());
             pstmt.setInt(4, u.getId());

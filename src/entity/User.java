@@ -7,47 +7,69 @@ package entity;/*
  */
 
 public class User {
-    public Integer id;
-    public String username;
-    public String password;
-    public String email;
+    private Integer id;
+    private String name;
+    private String password;
+    private String photo;
+    private String gender;
+    private String description;
+    private String email;
 
-    // 无参数的构造函数
-    public User() {
-    }
-    // 无参数id的构造函数
-    public User(String username, String password, String email) {
-        this.username = username;
+
+    public User(String name, String password, String photo, String gender, String description, String email) {
+        this.name = name;
         this.password = password;
+        this.photo = photo;
+        this.gender = gender;
+        this.description = description;
         this.email = email;
     }
 
-    // 有参数的构造函数
-    public User(Integer id, String username, String password, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
+    public String getPhoto() {
+        return photo;
     }
 
-    // 属性获取方法
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    // id获取方法
     public Integer getId() {
         return id;
     }
 
-    // 属性赋值方法
+    // id赋值方法
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    // name获取方法
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    // name赋值方法
+    public void setName(String name) {
+        this.name = name;
     }
 
+    // password获取
     public String getPassword() {
         return password;
     }
