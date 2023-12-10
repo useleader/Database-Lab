@@ -15,6 +15,15 @@ public class User {
     private String description;
     private String email;
 
+    public User(Integer id, String name, String password, String photo, String gender, String description, String email) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.photo = photo;
+        this.gender = gender;
+        this.description = description;
+        this.email = email;
+    }
 
     public User(String name, String password, String photo, String gender, String description, String email) {
         this.name = name;
@@ -23,6 +32,10 @@ public class User {
         this.gender = gender;
         this.description = description;
         this.email = email;
+    }
+
+    public User() {
+        
     }
 
     public String getPhoto() {

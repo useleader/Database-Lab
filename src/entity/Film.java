@@ -14,15 +14,28 @@ public class Film {
     private String name;
     private String description;
     private String director;
-    private String shortcut;
+    private String photo;
     private Duration duration;
     private String region;
 
-    public Film(String name, String description, String director, String shortcut, Duration duration, String region) {
+    public Film() {
+    }
+
+    public Film(String name, String description, String director, String photo, Duration duration, String region) {
         this.name = name;
         this.description = description;
         this.director = director;
-        this.shortcut = shortcut;
+        this.photo = photo;
+        this.duration = duration;
+        this.region = region;
+    }
+
+    public Film(Integer id, String name, String description, String director, String photo, Duration duration, String region) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.director = director;
+        this.photo = photo;
         this.duration = duration;
         this.region = region;
     }
@@ -59,12 +72,12 @@ public class Film {
         this.director = director;
     }
 
-    public String getShortcut() {
-        return shortcut;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setShortcut(String shortcut) {
-        this.shortcut = shortcut;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Duration getDuration() {

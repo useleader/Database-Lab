@@ -14,9 +14,13 @@ public class Actor {
 
     // 无参数的构造函数
     public Actor() {
-        this.name = "wakuwaku";
-        this.photo = "https://warmfire-store.oss-cn-beijing.aliyuncs.com/cartoon.jpg";
-        this.age = 18;
+    }
+
+    public Actor(Integer id, String name, String photo, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.photo = photo;
+        this.age = age;
     }
 
     // 无id的构造函数

@@ -18,6 +18,7 @@ import java.util.List;
 @WebServlet("/Users/selectAll") // 指定特定的URL路径与该Servlet类关联
 public class SelectAllServlet extends HttpServlet {
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response); // get请求的处理都跳到post请求
