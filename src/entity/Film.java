@@ -7,6 +7,7 @@ package entity;/*
  */
 
 
+import java.sql.Time;
 import java.time.Duration;
 
 public class Film {
@@ -15,13 +16,13 @@ public class Film {
     private String description;
     private String director;
     private String photo;
-    private Duration duration;
+    private Time duration;
     private String region;
 
     public Film() {
     }
 
-    public Film(String name, String description, String director, String photo, Duration duration, String region) {
+    public Film(String name, String description, String director, String photo, Time duration, String region) {
         this.name = name;
         this.description = description;
         this.director = director;
@@ -30,7 +31,7 @@ public class Film {
         this.region = region;
     }
 
-    public Film(Integer id, String name, String description, String director, String photo, Duration duration, String region) {
+    public Film(Integer id, String name, String description, String director, String photo, Time duration, String region) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -39,6 +40,7 @@ public class Film {
         this.duration = duration;
         this.region = region;
     }
+
 
     public Integer getId() {
         return id;
@@ -80,11 +82,11 @@ public class Film {
         this.photo = photo;
     }
 
-    public Duration getDuration() {
+    public Time getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(Time duration) {
         this.duration = duration;
     }
 

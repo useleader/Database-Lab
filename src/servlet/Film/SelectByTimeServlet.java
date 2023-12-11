@@ -1,31 +1,25 @@
 package servlet.Film;/*
  * @author   yan
- * @time     2023/12/8
+ * @time     2023/12/11
  * @project  Database-Lab
  * @product  IntelliJ IDEA
 
  */
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 import dao.FilmDao;
-
+import dao.UserDao;
 import entity.Film;
-
+import entity.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.List;
 
-@WebServlet("/movielist/selectByName")
-public class SelectByNameServlet extends HttpServlet {
+@WebServlet("/movielist/selectByTime")
+public class SelectByTimeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,11 +31,12 @@ public class SelectByNameServlet extends HttpServlet {
 
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-//        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
+
+        Time min_time = Time.valueOf(request.getParameter("min_time"));
+        Time max_time = Time.valueOf(request.getParameter("max_time"));
 
         FilmDao filmDao = new FilmDao();
-        List<Film> films = filmDao.selectByName(name);
+        List<Film> films = filmDao.selectByTime(min_time, max_time);
         // TODO
         request.setAttribute("filmList", films);
         // TODO 路径修改

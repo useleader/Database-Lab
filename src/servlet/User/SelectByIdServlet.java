@@ -15,7 +15,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/selectById")
+@WebServlet("/user/selectById")
 public class SelectByIdServlet extends HttpServlet {
 
     @Override
@@ -33,6 +33,7 @@ public class SelectByIdServlet extends HttpServlet {
         UserDao ud = new UserDao();
         User user = ud.selectById(id);
         request.setAttribute("user_attribute", user);
+//        TODO 路径配置
         request.getRequestDispatcher("update.jsp").forward(request,response);
     }
 }

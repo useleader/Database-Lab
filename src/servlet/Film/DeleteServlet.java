@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 @WebServlet("/movielist/delete_movie")
 public class DeleteServlet extends HttpServlet {
@@ -30,24 +31,27 @@ public class DeleteServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        FilmDao fd = new FilmDao();
-//        int count = fd.delete(id);
-//
-//        String str = null;
-//        if(count > 0){
-//            str = "删除成功";
-//        }else {
-//            str = "删除失败";
-//        }
+        Enumeration<String> a = request.getParameterNames();
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        FilmDao fd = new FilmDao();
+        int count = fd.delete(id);
+
+        String str = null;
+        if(count > 0){
+            str = "电影删除成功";
+        }else {
+            str = "电影删除失败";
+        }
 
         // 向客户端发送响应
         PrintWriter out = response.getWriter();
-//        out.print("<script>");
-//        out.print("alert('"+str+"');");
-//        out.print("location.href='/movielist'");
-//        out.print("</script>");
+        out.print("<script>");
+        out.print("alert('"+str+"');");
+//        TODO 确定href
+        out.print("location.href='/movielist'");
+        out.print("</script>");
         out.print("success");
         out.close();
 

@@ -15,7 +15,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/Users/selectAll") // 指定特定的URL路径与该Servlet类关联
+@WebServlet("/user/selectAll") // 指定特定的URL路径与该Servlet类关联
 public class SelectAllServlet extends HttpServlet {
 
 

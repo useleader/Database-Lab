@@ -42,6 +42,7 @@ public class SelectAllServlet extends HttpServlet {
         // 将当前的 request 和 response 对象传递给名为 "selectAll.jsp" 的JSP页面。
         // 这会导致控制权从当前Servlet转移到 "selectAll.jsp" 页面，
         // 且 "selectAll.jsp" 可以处理该请求并生成响应
+        // TODO 路径还没设置
         request.getRequestDispatcher("MovieList.vue").forward(request, response);
 
         PrintWriter out = response.getWriter();

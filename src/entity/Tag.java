@@ -7,20 +7,20 @@ package entity;/*
  */
 
 public class Tag {
-    private String name;
+    private String tag_name;
     private Integer film_id;
 
-    public Tag(String name, Integer film_id) {
-        this.name = name;
+    public Tag(String tag_name, Integer film_id) {
+        this.tag_name = tag_name;
         this.film_id = film_id;
     }
 
-    public String getName() {
-        return name;
+    public String getTag_name() {
+        return tag_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTag_name(String tag_name) {
+        this.tag_name = tag_name;
     }
 
     public Integer getFilm_id() {

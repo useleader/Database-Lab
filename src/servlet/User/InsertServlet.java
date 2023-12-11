@@ -15,7 +15,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/Users/insert")
+@WebServlet("/user/insert")
 public class InsertServlet extends HttpServlet {
 
     @Override

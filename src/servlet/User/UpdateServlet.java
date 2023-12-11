@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet("/update")
+@WebServlet("/user/update")
 public class UpdateServlet extends HttpServlet {
 
     @Override

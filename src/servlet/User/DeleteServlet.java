@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/delete")
+@WebServlet("/user/delete")
 public class DeleteServlet extends HttpServlet {
 
     @Override
@@ -37,9 +37,9 @@ public class DeleteServlet extends HttpServlet {
 
         String str = null;
         if(count > 0){
-            str = "删除成功";
+            str = "角色删除成功";
         }else {
-            str = "删除失败";
+            str = "角色删除失败";
         }
 
         // 向客户端发送响应
