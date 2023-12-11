@@ -52,7 +52,7 @@
           <el-option key="6.0~6.5" label="6.0~6.5" value="6.0~6.5"></el-option>
           <el-option key="6.0以下" label="6.0以下" value="6.0以下"></el-option>
         </el-select>
-        <el-select v-model="query.language" placeholder="电影时长" class="handle-select mr10">
+        <el-select v-model="query.duration" placeholder="电影时长" class="handle-select mr10">
           <el-option key="不限" label="不限" value="不限"></el-option>
           <el-option key="大于120分钟" label="大于120分钟" value="大于120分钟"></el-option>
           <el-option key="90-120分钟" label="90-120分钟" value="90-120分钟"></el-option>
@@ -108,9 +108,9 @@ export default {
   setup() {
     const query = reactive({
       type: "",
-      language: "",
       country: "",
       grade: "",
+      duration: "",
       pageIndex: 1, // 当前页
       pageSize: 10, // 每页有多少项
     });
@@ -173,7 +173,7 @@ export default {
       editVisible.value = true;
     };
 
-    // 打分，这里分数需要乘2
+    // 打分
     const editVisible = ref(false);
     const saveEdit = () => {
       editVisible.value = false;
