@@ -43,7 +43,7 @@ public class SelectByCombiningServlet extends HttpServlet{
 
 //        int id = Integer.parseInt(request.getParameter("id"));
         String director = request.getParameter("director");
-
+        String name = request.getParameter("name");
         FilmDao filmDao = new FilmDao();
         List<Film> films = filmDao.selectByDirector(director);
 

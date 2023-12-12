@@ -8,7 +8,9 @@ package entity;/*
 
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.List;
 
 public class Film {
     private Integer id;
@@ -20,6 +22,39 @@ public class Film {
     private String region;
 
     private Float avg_score;
+
+    private List<String> tags;
+
+    private String str_duration;
+
+    public String getStr_duration() {
+        return str_duration;
+    }
+
+    public void setStr_duration(String str_duration) {
+        this.str_duration = str_duration;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    private List<String> actors;
+
+    public List<String> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<String> actors) {
+        this.actors = actors;
+    }
+
+
 
     public Float getAvg_score() {
         return avg_score;
@@ -41,6 +76,12 @@ public class Film {
         this.duration = duration;
         this.region = region;
         this.avg_score = avg_score;
+        if (this.duration != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            this.str_duration = dateFormat.format(duration);
+        }
+
+
     }
 
     public Film(String name, String description, String director, String photo, Time duration, String region, Float avg_score) {
@@ -51,6 +92,10 @@ public class Film {
         this.duration = duration;
         this.region = region;
         this.avg_score = avg_score;
+        if (this.duration != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            this.str_duration = dateFormat.format(duration);
+        }
     }
 
     public Integer getId() {

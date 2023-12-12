@@ -5,7 +5,7 @@ import store from './store'
 import installElementPlus from './plugins/element'
 import './assets/css/icon.css'
 
-localStorage.setItem("ip", "http://127.0.0.1:14562/");
+localStorage.setItem("ip", "http://localhost:8080/Database_Lab_war_exploded/");
 const app = createApp(App)
 installElementPlus(app)
 app

@@ -14,15 +14,14 @@
         <el-button type="primary" icon="el-icon-plus" plain @click="(editVisible = true)">添加电影</el-button>
       </div>
       <el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
-        <el-table-column prop="alias" width="100" label="ID" align="center"></el-table-column>
+        <el-table-column prop="id" width="100" label="ID" align="center"></el-table-column>
         <el-table-column prop="name" label="电影名" align="center"></el-table-column>
-        <el-table-column prop="performer" label="演员" align="center"></el-table-column>
+        <el-table-column prop="actors" label="演员" align="center"></el-table-column>
         <el-table-column prop="director" label="导演" align="center"></el-table-column>
-        <el-table-column prop="type" width="100" label="类型" align="center"></el-table-column>
-        <el-table-column prop="country" width="100" label="地区" align="center"></el-table-column>
-        <el-table-column prop="grade" width="100" label="评分" align="center"></el-table-column>
-        <el-table-column prop="date" width="100" label="上映日期" align="center"></el-table-column>
-        <el-table-column prop="duration" width="100" label="影片时长" align="center"></el-table-column>
+        <el-table-column prop="tags" width="100" label="类型" align="center"></el-table-column>
+        <el-table-column prop="region" width="100" label="地区" align="center"></el-table-column>
+        <el-table-column prop="score" width="100" label="评分" align="center"></el-table-column>
+        <el-table-column prop="str_duration" width="100" label="影片时长" align="center"></el-table-column>
         <el-table-column label="操作" width="90" align="center">
           <template #default="scope">
             <el-button type="text" icon="el-icon-delete" class="red"
@@ -105,9 +104,10 @@ export default {
     }
     onMounted(() => {
       // 这里都不需要传参
-      axios.get(localStorage.getItem("ip") + "select_all").then(
+      axios.get(localStorage.getItem("ip") + "/movielist").then(
           function (response) {
-            let list = response.data.result;
+            console.log(response)
+            let list = response.data;
             TableData.value = list;
             tableData.value = list.slice(
                 query.pageSize*(query.pageIndex-1),
@@ -116,7 +116,7 @@ export default {
           }
       )
     })
-    getData();
+
     // 查询操作
     const handleSearch = () => {
       query.pageIndex = 1;
