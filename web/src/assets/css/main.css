@@ -63,6 +63,12 @@ a {
 .pagination {
     margin: 20px 0;
     text-align: right;
+
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #0da5aa;
+    color: #fff;
 }
 
 .plugins-tips {

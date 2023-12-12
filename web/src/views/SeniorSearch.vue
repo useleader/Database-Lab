@@ -50,7 +50,7 @@
           <el-option key="7.0~7.5" label="7.0~7.5" value="7.0~7.5"></el-option>
           <el-option key="6.5~7.0" label="6.5~7.0" value="6.5~7.0"></el-option>
           <el-option key="6.0~6.5" label="6.0~6.5" value="6.0~6.5"></el-option>
-          <el-option key="6.0以下" label="6.0以下" value="6.0以下"></el-option>
+          <el-option key="6.0以下" label="6.0以下" value="0~6.0"></el-option>
         </el-select>
         <el-select v-model="query.duration" placeholder="电影时长" class="handle-select mr10">
           <el-option key="不限" label="不限" value="不限"></el-option>
@@ -59,16 +59,17 @@
           <el-option key="40-90分钟" label="40-90分钟" value="40~90"></el-option>
           <el-option key="小于40分钟" label="小于40分钟" value="~40"></el-option>
         </el-select>
-        <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+        <el-button type="success" @click="handleSearch">搜索</el-button>
       </div>
       <el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
+        <el-table-column prop="alias" width="100" label="电影ID"></el-table-column>
         <el-table-column prop="name" label="电影名" align="center"></el-table-column>
         <el-table-column prop="grade" width="100" label="评分"></el-table-column>
         <el-table-column prop="type" width="100" label="类型"></el-table-column>
         <el-table-column prop="country" width="100" label="国家"></el-table-column>
         <el-table-column prop="date" width="100" label="上映时间"></el-table-column>
         <el-table-column prop="duration" width="100" label="影片时长"></el-table-column>
-        <el-table-column prop="alias" width="100" label="别名"></el-table-column>
+
         <el-table-column label="打分" width="90" align="center">
           <template #default="scope">
             <el-button type="text" icon="el-icon-edit"
@@ -228,6 +229,8 @@ export default {
   width: 300px;
   display: inline-block;
 }
+
+
 .table {
   width: 100%;
   font-size: 14px;
@@ -261,5 +264,26 @@ export default {
   color: var(--el-text-color-secondary);
   font-size: 14px;
   margin-bottom: 20px;
+}
+
+</style>
+
+
+<style>
+.el-pagination.is-background.el-pager li:not(.disabled){
+  background-color:#fff;/*进行修改未选中背景和字体*/
+  color:#fff;
+}
+
+.el-pagination.is-background.el-pager li:not(.disabled).active{
+  background-color:#0da5aa;/*进行修改选中项背景和字体*/
+  color:#fff;
+}
+
+.el-pagination.is-background .el-pager li:hover{
+  color: #8bc34a !important;/*hover时候的文字颜色*/
+}
+.el-pager li.active{
+  color:#fff !important;/*仅设置active时的文字颜色*/
 }
 </style>
