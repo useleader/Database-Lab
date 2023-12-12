@@ -269,6 +269,9 @@ export default {
 .red {
   color: #ff0000;
 }
+.blue{
+  color: #0000ff;
+}
 .mr10 {
   margin-right: 10px;
 }

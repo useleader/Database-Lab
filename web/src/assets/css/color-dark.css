@@ -8,20 +8,20 @@
     background: #eef1f6;
 }
 .plugins-tips a{
-    color: #20a0ff;
+    color: #0da5aa;
 }
 .el-upload--text em {
-    color: #20a0ff;
+    color: #0da5aa;
 }
 .pure-button{
-    background: #20a0ff;
+    background: #0da5aa;
 }
 .tags-li.active {
-    border: 1px solid #409EFF;
-    background-color: #409EFF;
+    border: 1px solid #0da5aa;
+    background-color: #0da5aa;
 }
 .message-title{
-    color: #20a0ff;
+    color: #0da5aa;
 }
 .collapse-btn:hover{
     background: rgb(122, 162, 222);

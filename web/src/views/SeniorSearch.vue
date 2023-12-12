@@ -54,10 +54,10 @@
         </el-select>
         <el-select v-model="query.duration" placeholder="电影时长" class="handle-select mr10">
           <el-option key="不限" label="不限" value="不限"></el-option>
-          <el-option key="大于120分钟" label="大于120分钟" value="大于120分钟"></el-option>
-          <el-option key="90-120分钟" label="90-120分钟" value="90-120分钟"></el-option>
-          <el-option key="40-90分钟" label="40-90分钟" value="40-90分钟"></el-option>
-          <el-option key="小于40分钟" label="小于40分钟" value="小于40分钟"></el-option>
+          <el-option key="大于120分钟" label="大于120分钟" value="120~"></el-option>
+          <el-option key="90-120分钟" label="90-120分钟" value="90~120"></el-option>
+          <el-option key="40-90分钟" label="40-90分钟" value="40~90"></el-option>
+          <el-option key="小于40分钟" label="小于40分钟" value="~40"></el-option>
         </el-select>
         <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
       </div>
