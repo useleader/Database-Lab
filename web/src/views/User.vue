@@ -85,7 +85,6 @@ export default {
       gender:"",
       old: "",
       new: "",
-      gender:"",
       email:"",
       desc: "请在此输入您的个人简介",
     });

@@ -29,14 +29,13 @@ public class InsertServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-//        String id = request.getParameter("id");
+
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
         User user = new User();
 
-//        user.setId(Integer.valueOf(id));
         user.setName(name);
         user.setPassword(password);
         user.setEmail(email);

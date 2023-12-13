@@ -6,14 +6,11 @@ package dao;/*
 
  */
 
-import com.sun.xml.internal.bind.v2.TODO;
 import entity.Film;
-import entity.User;
 import util.DBConnectionUtil;
+import util.FilmGetData;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,12 +28,6 @@ public class FilmDao {
 
             // 使用rs.next()方法一行一行读取查询结果
             while(rs.next()){
-                PreparedStatement pstmt2 = null;
-                ResultSet rs2 = null;
-                PreparedStatement pstmt3 = null;
-                ResultSet rs3 = null;
-                List<String> actors = new ArrayList<>();
-                List<String> tags = new ArrayList<>();
                 Film film = new Film(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -46,26 +37,9 @@ public class FilmDao {
                         rs.getString(7),
                         rs.getFloat(8));
 
-//                找演员
-                pstmt2 = conn.prepareStatement("select actor.name from actor join perform on actor.actor_id = perform.actor_id join film on perform.film_id = film.film_id where film.film_id=?");
-                pstmt2.setInt(1, film.getId());
-                rs2 = pstmt2.executeQuery();
-                while(rs2.next()){
-                    String actor_name = rs2.getString(1);
-                    actors.add(actor_name);
-                }
-                film.setActors(actors);
-
-//                找标签
-                pstmt3 = conn.prepareStatement("select tag_name from tag join film on tag.film_id = film.film_id where film.film_id=?");
-                pstmt3.setInt(1,film.getId());
-                rs3 = pstmt3.executeQuery();
-                while(rs3.next()){
-                    String tag_name = rs3.getString(1);
-                    tags.add(tag_name);
-                }
-                film.setTags(tags);
-
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
                 list.add(film);
             }
         } catch (SQLException e) {
@@ -118,6 +92,9 @@ public class FilmDao {
                         rs.getTime(6),
                         rs.getString(7),
                         rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -186,6 +163,9 @@ public class FilmDao {
                         rs.getTime(6),
                         rs.getString(7),
                         rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
                 list.add(film);
             }
         } catch (SQLException e) {
@@ -213,6 +193,9 @@ public class FilmDao {
                         rs.getTime(6),
                         rs.getString(7),
                         rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
                 list.add(film);
             }
         } catch (SQLException e) {
@@ -240,6 +223,9 @@ public class FilmDao {
                         rs.getTime(6),
                         rs.getString(7),
                         rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
                 list.add(film);
             }
         } catch (SQLException e) {
@@ -267,6 +253,9 @@ public class FilmDao {
                         rs.getTime(6),
                         rs.getString(7),
                         rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
                 list.add(film);
             }
         } catch (SQLException e) {
@@ -295,6 +284,9 @@ public class FilmDao {
                         rs.getTime(6),
                         rs.getString(7),
                         rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
                 list.add(film);
             }
         } catch (SQLException e) {
@@ -323,6 +315,9 @@ public class FilmDao {
                         rs.getTime(6),
                         rs.getString(7),
                         rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
                 list.add(film);
             }
         } catch (SQLException e) {
