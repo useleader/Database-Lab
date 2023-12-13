@@ -63,7 +63,7 @@
       </div>
       <el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
         <el-table-column prop="alias" width="100" label="电影ID"></el-table-column>
-        <el-table-column prop="name" label="电影名" align="center"></el-table-column>
+        <el-table-column prop="name" label="电影名" href="MoviePage"  align="center"></el-table-column>
         <el-table-column prop="grade" width="100" label="评分"></el-table-column>
         <el-table-column prop="type" width="100" label="类型"></el-table-column>
         <el-table-column prop="country" width="100" label="国家"></el-table-column>
