@@ -14,13 +14,13 @@
         <el-button type="success" icon="el-icon-plus" plain @click="(editVisible = true)">添加电影</el-button>
       </div>
       <el-table  :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
-        <el-table-column prop="id" width="100" label="ID" align="center">
+        <el-table-column prop="id" width="100" label="ID" align="center"></el-table-column>
+        <el-table-column prop="name" label="电影名" align="center">
           <template v-slot="scope">
             <el-button type="text"
-                       @click="goToMoviePage(scope.row)">{{ scope.row.id }}</el-button>
+                       @click="goToMoviePage(scope.row)">{{ scope.row.name }}</el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="电影名" align="center"></el-table-column>
         <el-table-column prop="actors" label="演员" align="center"></el-table-column>
         <el-table-column prop="director" label="导演" align="center"></el-table-column>
         <el-table-column prop="tags" width="100" label="类型" align="center"></el-table-column>

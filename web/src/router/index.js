@@ -31,6 +31,13 @@ const routes = [
                     title: '组合查询'
                 },
                 component: () => import (/* webpackChunkName: "editor" */ '../views/SeniorSearch.vue')
+            },{
+                path: '/moviepage/:id',
+                name: 'moviepage',
+                meta: {
+                    title: '电影详情页'
+                },
+                component: () => import(/* webpackChunkName: "moviepage" */ '../views/MoviePage.vue')
             }
         ]
     }, {
@@ -41,12 +48,12 @@ const routes = [
         },
         component: () => import ( /* webpackChunkName: "login" */ "../views/Login.vue")
     },{
-        path: '/moviepage/:id',
-        name: 'moviepage',
+        path: "/signup",
+        name: "Signup",
         meta: {
-            title: '电影详情页'
+            title: '注册'
         },
-        component: () => import(/* webpackChunkName: "moviepage" */ '../views/MoviePage.vue')
+        component: () => import (/* webpackChunkName:"Signup" */ "../views/Signup.vue")
     }
 ];
 

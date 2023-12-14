@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("application/json; charset=utf-8");
 
 
-        String name = request.getParameter("name");
+        String name = request.getParameter("username");
         String password = request.getParameter("password");
 
         UserDao ud = new UserDao();

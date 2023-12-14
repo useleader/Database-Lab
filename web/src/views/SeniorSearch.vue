@@ -119,15 +119,20 @@
         <el-button type="success" @click="handleSearch">搜索</el-button>
       </div>
       <el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
-        <el-table-column prop="alias" width="100" label="电影ID"></el-table-column>
-        <el-table-column prop="name" label="电影名" href="MoviePage"  align="center"></el-table-column>
-        <el-table-column prop="grade" width="100" label="评分"></el-table-column>
-        <el-table-column prop="type" width="100" label="类型"></el-table-column>
-        <el-table-column prop="country" width="100" label="国家"></el-table-column>
-        <el-table-column prop="date" width="100" label="上映时间"></el-table-column>
-        <el-table-column prop="duration" width="100" label="影片时长"></el-table-column>
+        <el-table-column prop="id" width="100" label="电影ID"></el-table-column>
+        <el-table-column prop="name" label="电影名" align="center">
+          <template v-slot="scope">
+            <el-button type="text"
+                       @click="goToMoviePage(scope.row)">{{ scope.row.name }}</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column prop="tags" width="100" label="类型"></el-table-column>
+        <el-table-column prop="region" width="100" label="国家"></el-table-column>
+        <el-table-column prop="director" width="100" label="导演"></el-table-column>
+        <el-table-column prop="str_duration" width="100" label="影片时长"></el-table-column>
+        <el-table-column prop="avg_score" width="100" label="电影评分"></el-table-column>
         <el-table-column label="打分" width="90" align="center">
-          <template #default="scope">
+          <template v-slot="scope">
             <el-button type="text" icon="el-icon-edit"
                        @click="handleEdit(scope.$index, scope.row)">打分</el-button>
           </template>
@@ -159,6 +164,7 @@ import { ref, reactive, onMounted} from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import axios from "axios";
 import qs from "qs";
+import router from "../router";
 
 export default {
   name: "basetable",
@@ -166,10 +172,10 @@ export default {
     const query = reactive({
       type: "",
       country: "",
-      min_score: "",
-      max_score: "",
-      min_duration: "",
-      max_duration: "",
+      min_score: 0,
+      max_score: 10,
+      min_duration: "00:00:00",
+      max_duration: "10:10:10",
       pageIndex: 1, // 当前页
       pageSize: 10, // 每页有多少项
     });
@@ -181,7 +187,8 @@ export default {
 
     const my_grade = ref(null);
     const send_grade = reactive({
-      name: "",
+      film_id: "",
+      user_id: "",
       grade: my_grade,
     })
 
@@ -192,26 +199,13 @@ export default {
           query.pageSize*(query.pageIndex)
       );
     }
-    // onMounted(() => {
-    //   // 这里都不需要传参
-    //     axios.get(localStorage.getItem("ip") + "select_all").then(
-    //         function (response) {
-    //           let list = response.data.result;
-    //           TableData.value = list;
-    //           tableData.value = list.slice(
-    //               query.pageSize*(query.pageIndex-1),
-    //               query.pageSize*(query.pageIndex));
-    //           pageTotal.value = list.length;
-    //         }
-    //     );
-    // });
     // 查询操作
     const handleSearch = () => {
       query.pageIndex = 1;
       let sendpara = qs.stringify(query);
       axios.post(localStorage.getItem("ip") + "/movielist/combining", sendpara).then(
           function (response){
-            let list = response.data.result;
+            let list = response.data;
             TableData.value = list;
             tableData.value = list.slice(
                 query.pageSize*(query.pageIndex-1),
@@ -228,7 +222,9 @@ export default {
     };
 
     const handleEdit = (index, row) => {
-      send_grade.name = row.name;
+
+      send_grade.film_id = row.id;
+      send_grade.user_id =
       editVisible.value = true;
     };
 
@@ -272,7 +268,15 @@ export default {
 
     };
   },
+  methods: {
+    //跳转到详情页
+    goToMoviePage(row) {
+      router.push({ name: 'moviepage', params: { id: row.id } });
+    },
+
+  }
 };
+
 </script>
 
 <style scoped>

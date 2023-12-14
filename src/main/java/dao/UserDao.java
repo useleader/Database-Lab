@@ -27,9 +27,11 @@ public class UserDao {
             pstmt = conn.prepareStatement("select password from user where name=?;");
             pstmt.setString(1, username);
             rs = pstmt.executeQuery();
-            String rel_pwd = rs.getString(1);
-            if (rel_pwd.equals(password)) {
-                return 1;
+            if (rs.next()) {
+                String rel_pwd = rs.getString(1);
+                if (rel_pwd.equals(password)) {
+                    return 1;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

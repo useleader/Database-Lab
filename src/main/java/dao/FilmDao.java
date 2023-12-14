@@ -333,8 +333,12 @@ public class FilmDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try{
-            pstmt = conn.prepareStatement("select * from film natural join tag where tag_name = ? and region = ? and ;");
+            // score没录入
+            pstmt = conn.prepareStatement("select * from film natural join tag where tag_name = ? and region = ? and (duration between ? and ?);");
             pstmt.setString(1, tag);
+            pstmt.setString(2, region);
+            pstmt.setTime(3, min_duration);
+            pstmt.setTime(4,max_duration);
             rs = pstmt.executeQuery(); // 执行SQL语句，返回结果集
             // 使用rs.next()方法一行一行读取查询结果
             while(rs.next()){
