@@ -39,23 +39,74 @@
           <el-option key="Western"     label="Western"     value="Western"></el-option>
         </el-select>
 
-        <el-select v-model="query.country" placeholder="国家" class="handle-select mr10">
-          <el-option key="不限" label="不限" value="不限"></el-option>
-          <el-option key="美国" label="美国" value="美国"></el-option>
-          <el-option key="英国" label="英国" value="英国"></el-option>
-          <el-option key="法国" label="法国" value="法国"></el-option>
-          <el-option key="意大利" label="意大利" value="意大利"></el-option>
-          <el-option key="德国" label="德国" value="德国"></el-option>
-          <el-option key="中国大陆" label="中国大陆" value="中国大陆"></el-option>
-          <el-option key="中国台湾" label="中国台湾" value="中国台湾"></el-option>
-          <el-option key="中国香港" label="中国香港" value="中国香港"></el-option>
-          <el-option key="日本" label="日本" value="日本"></el-option>
-          <el-option key="韩国" label="韩国" value="韩国"></el-option>
-          <el-option key="巴西" label="巴西" value="巴西"></el-option>
-          <el-option key="新西兰" label="新西兰" value="新西兰"></el-option>
-          <el-option key="加拿大" label="加拿大" value="加拿大"></el-option>
-          <el-option key="澳大利亚" label="澳大利亚" value="澳大利亚"></el-option>
-          <el-option key="墨西哥" label="墨西哥" value="墨西哥"></el-option>
+        <el-select v-model="query.country" placeholder="地区" class="handle-select mr10">
+          <el-option key="%" label="不限" value="%"></el-option>
+          <el-option key="USA" label="USA" value="USA"></el-option>
+          <el-option key="UK" label="UK" value="UK"></el-option>
+          <el-option key="New Zealand" label="New Zealand" value="New Zealand"></el-option>
+          <el-option key="Canada" label="Canada" value="Canada"></el-option>
+          <el-option key="Australia" label="Australia" value="Australia"></el-option>
+          <el-option key="Belgium" label="Belgium" value="Belgium"></el-option>
+          <el-option key="Japan" label="Japan" value="Japan"></el-option>
+          <el-option key="Germany" label="Germany" value="Germany"></el-option>
+          <el-option key="China" label="China" value="China"></el-option>
+          <el-option key="France" label="France" value="France"></el-option>
+          <el-option key="" label="" value=""></el-option>
+          <el-option key="New Line" label="New Line" value="New Line"></el-option>
+          <el-option key="Mexico" label="Mexico" value="Mexico"></el-option>
+          <el-option key="Spain" label="Spain" value="Spain"></el-option>
+          <el-option key="Hong Kong" label="Hong Kong" value="Hong Kong"></el-option>
+          <el-option key="Czech Republic" label="Czech Republic" value="Czech Republic"></el-option>
+          <el-option key="India" label="India" value="India"></el-option>
+          <el-option key="Soviet Union" label="Soviet Union" value="Soviet Union"></el-option>
+          <el-option key="South Korea" label="South Korea" value="South Korea"></el-option>
+          <el-option key="Peru" label="Peru" value="Peru"></el-option>
+          <el-option key="Italy" label="Italy" value="Italy"></el-option>
+          <el-option key="Russia" label="Russia" value="Russia"></el-option>
+          <el-option key="Aruba" label="Aruba" value="Aruba"></el-option>
+          <el-option key="Denmark" label="Denmark" value="Denmark"></el-option>
+          <el-option key="Libya" label="Libya" value="Libya"></el-option>
+          <el-option key="Ireland" label="Ireland" value="Ireland"></el-option>
+          <el-option key="South Africa" label="South Africa" value="South Africa"></el-option>
+          <el-option key="Iceland" label="Iceland" value="Iceland"></el-option>
+          <el-option key="Switzerland" label="Switzerland" value="Switzerland"></el-option>
+          <el-option key="Romania" label="Romania" value="Romania"></el-option>
+          <el-option key="West Germany" label="West Germany" value="West Germany"></el-option>
+          <el-option key="Chile" label="Chile" value="Chile"></el-option>
+          <el-option key="Netherlands" label="Netherlands" value="Netherlands"></el-option>
+          <el-option key="Hungary" label="Hungary" value="Hungary"></el-option>
+          <el-option key="Panama" label="Panama" value="Panama"></el-option>
+          <el-option key="Greece" label="Greece" value="Greece"></el-option>
+          <el-option key="Sweden" label="Sweden" value="Sweden"></el-option>
+          <el-option key="Norway" label="Norway" value="Norway"></el-option>
+          <el-option key="Taiwan" label="Taiwan" value="Taiwan"></el-option>
+          <el-option key="Official site" label="Official site" value="Official site"></el-option>
+          <el-option key="Cambodia" label="Cambodia" value="Cambodia"></el-option>
+          <el-option key="Thailand" label="Thailand" value="Thailand"></el-option>
+          <el-option key="Slovakia" label="Slovakia" value="Slovakia"></el-option>
+          <el-option key="Bulgaria" label="Bulgaria" value="Bulgaria"></el-option>
+          <el-option key="Iran" label="Iran" value="Iran"></el-option>
+          <el-option key="Poland" label="Poland" value="Poland"></el-option>
+          <el-option key="Georgia" label="Georgia" value="Georgia"></el-option>
+          <el-option key="Turkey" label="Turkey" value="Turkey"></el-option>
+          <el-option key="Nigeria" label="Nigeria" value="Nigeria"></el-option>
+          <el-option key="Brazil" label="Brazil" value="Brazil"></el-option>
+          <el-option key="Finland" label="Finland" value="Finland"></el-option>
+          <el-option key="Bahamas" label="Bahamas" value="Bahamas"></el-option>
+          <el-option key="Argentina" label="Argentina" value="Argentina"></el-option>
+          <el-option key="Colombia" label="Colombia" value="Colombia"></el-option>
+          <el-option key="Israel" label="Israel" value="Israel"></el-option>
+          <el-option key="Egypt" label="Egypt" value="Egypt"></el-option>
+          <el-option key="Kyrgyzstan" label="Kyrgyzstan" value="Kyrgyzstan"></el-option>
+          <el-option key="Indonesia" label="Indonesia" value="Indonesia"></el-option>
+          <el-option key="Pakistan" label="Pakistan" value="Pakistan"></el-option>
+          <el-option key="Slovenia" label="Slovenia" value="Slovenia"></el-option>
+          <el-option key="Afghanistan" label="Afghanistan" value="Afghanistan"></el-option>
+          <el-option key="Dominican Republic" label="Dominican Republic" value="Dominican Republic"></el-option>
+          <el-option key="Cameroon" label="Cameroon" value="Cameroon"></el-option>
+          <el-option key="United Arab Emirates" label="United Arab Emirates" value="United Arab Emirates"></el-option>
+          <el-option key="Kenya" label="Kenya" value="Kenya"></el-option>
+          <el-option key="Philippines" label="Philippines" value="Philippines"></el-option>
         </el-select>
         <div class="handle-box">
           <el-input v-model="query.min_score" placeholder="最小评分(0~10)" class="handle-input mr10"></el-input>
