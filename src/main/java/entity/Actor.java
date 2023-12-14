@@ -10,26 +10,22 @@ public class Actor {
     private Integer id;
     private String name;
     private String photo;
-    private Integer age;
+
 
     // 无参数的构造函数
     public Actor() {
     }
 
-    public Actor(Integer id, String name, String photo, Integer age) {
+    public Actor(Integer id, String name, String photo) {
         this.id = id;
         this.name = name;
         this.photo = photo;
-        this.age = age;
     }
 
-    // 无id的构造函数
-    public Actor(String name, String photo, Integer age) {
+    public Actor(String name, String photo) {
         this.name = name;
         this.photo = photo;
-        this.age = age;
     }
-
 
     public String getName() {
         return name;
@@ -53,14 +49,6 @@ public class Actor {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
 

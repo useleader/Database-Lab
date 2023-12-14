@@ -15,6 +15,10 @@ public class Perform {
         this.actor_id = actor_id;
     }
 
+    public Perform() {
+
+    }
+
     public Integer getFilm_id() {
         return film_id;
     }

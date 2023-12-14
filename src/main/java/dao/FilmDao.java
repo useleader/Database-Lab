@@ -10,6 +10,7 @@ import entity.Film;
 import util.DBConnectionUtil;
 import util.FilmGetData;
 
+import java.beans.Introspector;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,6 @@ public class FilmDao {
         try{
             pstmt = conn.prepareStatement("insert into film(name, description, director, photo, duration, region) values (?, ?, ?, ?, ?, ?);");  // 问号？是占位符
             // 传递参数
-
             pstmt.setString(1, film.getName());
             pstmt.setString(2, film.getDescription());
             pstmt.setString(3, film.getDirector());
@@ -326,4 +326,50 @@ public class FilmDao {
         return list;
     }
 
+    //TODO 这里正常是多选tag,待扩展
+    public List<Film> selectByCombine(String tag, String region, Float min_score, Float max_score, Time min_duration, Time max_duration){
+        List<Film> list = new ArrayList<>();
+        Connection conn = DBConnectionUtil.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try{
+            pstmt = conn.prepareStatement("select * from film natural join tag where tag_name = ? and region = ? and ;");
+            pstmt.setString(1, tag);
+            rs = pstmt.executeQuery(); // 执行SQL语句，返回结果集
+            // 使用rs.next()方法一行一行读取查询结果
+            while(rs.next()){
+                Film film = new Film(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getTime(6),
+                        rs.getString(7),
+                        rs.getFloat(8));
+                FilmGetData perform = new FilmGetData();
+                film.setActors(perform.getActors(film.getId(), conn));
+                film.setTags(perform.getTags(film.getId(), conn));
+                list.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public int getMaxId() {
+        Connection conn = DBConnectionUtil.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Integer maxId = 0;
+        try {
+            pstmt = conn.prepareStatement("select max(film_id) from film;");
+            rs = pstmt.executeQuery();
+            if(rs.next()) {
+                maxId = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maxId;
+    }
 }

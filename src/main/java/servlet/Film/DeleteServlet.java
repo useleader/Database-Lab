@@ -37,23 +37,15 @@ public class DeleteServlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Headers", "token, Accept, Origin, X-Requested-With, Content-Type, Last-Modified");
         response.setContentType("application/json; charset=utf-8");
 
-        Enumeration<String> a = request.getParameterNames();
 
         int id = Integer.parseInt(request.getParameter("id"));
 
         FilmDao fd = new FilmDao();
         int count = fd.delete(id);
-
-        String str = null;
-        if(count > 0){
-            str = "电影删除成功";
-        }else {
-            str = "电影删除失败";
-        }
-
+        // count=1, success; count=0, failure
         // 向客户端发送响应
         try {
-            String jsonStr = JSON.toJSONString(str);
+            String jsonStr = JSON.toJSONString(count);
             response.getWriter().write(jsonStr);
         } catch (JSONException e) {
             System.out.println("Exception thrown  :" + e);

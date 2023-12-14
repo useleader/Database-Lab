@@ -10,16 +10,33 @@
     <div class="container">
       <div class="handle-box">
         <el-select v-model="query.type" placeholder="类型" class="handle-select mr10">
-          <el-option key="不限" label="不限" value="不限"></el-option>
-          <el-option key="剧情" label="剧情" value="剧情"></el-option>
-          <el-option key="动作" label="动作" value="动作"></el-option>
-          <el-option key="犯罪" label="犯罪" value="犯罪"></el-option>
-          <el-option key="冒险" label="冒险" value="冒险"></el-option>
-          <el-option key="传记" label="传记" value="传记"></el-option>
-          <el-option key="喜剧" label="喜剧" value="喜剧"></el-option>
-          <el-option key="恐怖" label="恐怖" value="恐怖"></el-option>
-          <el-option key="西部" label="西部" value="西部"></el-option>
-          <el-option key="悬疑" label="悬疑" value="悬疑"></el-option>
+          <el-option key="%" label="不限" value="%"></el-option>
+          <el-option key="Action"      label="Action"      value="Action"></el-option>
+          <el-option key="Adventure"   label="Adventure"   value="Adventure"></el-option>
+          <el-option key="Animation"   label="Animation"   value="Animation"></el-option>
+          <el-option key="Biography"   label="Biography"   value="Biography"></el-option>
+          <el-option key="Comedy"      label="Comedy"      value="Comedy"></el-option>
+          <el-option key="Crime"       label="Crime"       value="Crime"></el-option>
+          <el-option key="Documentary" label="Documentary" value="Documentary"></el-option>
+          <el-option key="Drama"       label="Drama"       value="Drama"></el-option>
+          <el-option key="Family"      label="Family"      value="Family"></el-option>
+          <el-option key="Fantasy"     label="Fantasy"     value="Fantasy"></el-option>
+          <el-option key="Film-Noir"   label="Film-Noir"   value="Film-Noir"></el-option>
+          <el-option key="Game-Show"   label="Game-Show"   value="Game-Show"></el-option>
+          <el-option key="History"     label="History"     value="History"></el-option>
+          <el-option key="Horror"      label="Horror"      value="Horror"></el-option>
+          <el-option key="Music"       label="Music"       value="Music"></el-option>
+          <el-option key="Musical"     label="Musical"     value="Musical"></el-option>
+          <el-option key="Mystery"     label="Mystery"     value="Mystery"></el-option>
+          <el-option key="News"        label="News"        value="News"></el-option>
+          <el-option key="Reality-TV"  label="Reality-TV"  value="Reality-TV"></el-option>
+          <el-option key="Romance"     label="Romance"     value="Romance"></el-option>
+          <el-option key="Sci-Fi"      label="Sci-Fi"      value="Sci-Fi"></el-option>
+          <el-option key="Short"       label="Short"       value="Short"></el-option>
+          <el-option key="Sport"       label="Sport"       value="Sport"></el-option>
+          <el-option key="Thriller"    label="Thriller"    value="Thriller"></el-option>
+          <el-option key="War"         label="War"         value="War"></el-option>
+          <el-option key="Western"     label="Western"     value="Western"></el-option>
         </el-select>
 
         <el-select v-model="query.country" placeholder="国家" class="handle-select mr10">
@@ -40,25 +57,14 @@
           <el-option key="澳大利亚" label="澳大利亚" value="澳大利亚"></el-option>
           <el-option key="墨西哥" label="墨西哥" value="墨西哥"></el-option>
         </el-select>
-        <el-select v-model="query.grade" placeholder="评分" class="handle-select mr10">
-          <el-option key="不限" label="不限" value="不限"></el-option>
-          <el-option key="9.5~10.0" label="9.5~10.0" value="9.5~10.0"></el-option>
-          <el-option key="9.0~9.5" label="9.0~9.5" value="9.0~9.5"></el-option>
-          <el-option key="8.5~9.0" label="8.5~9.0" value="8.5~9.0"></el-option>
-          <el-option key="8.0~8.5" label="8.0~8.5" value="8.0~8.5"></el-option>
-          <el-option key="7.5~8.0" label="7.5~8.0" value="7.5~8.0"></el-option>
-          <el-option key="7.0~7.5" label="7.0~7.5" value="7.0~7.5"></el-option>
-          <el-option key="6.5~7.0" label="6.5~7.0" value="6.5~7.0"></el-option>
-          <el-option key="6.0~6.5" label="6.0~6.5" value="6.0~6.5"></el-option>
-          <el-option key="6.0以下" label="6.0以下" value="0~6.0"></el-option>
-        </el-select>
-        <el-select v-model="query.duration" placeholder="电影时长" class="handle-select mr10">
-          <el-option key="不限" label="不限" value="不限"></el-option>
-          <el-option key="大于120分钟" label="大于120分钟" value="120~"></el-option>
-          <el-option key="90-120分钟" label="90-120分钟" value="90~120"></el-option>
-          <el-option key="40-90分钟" label="40-90分钟" value="40~90"></el-option>
-          <el-option key="小于40分钟" label="小于40分钟" value="~40"></el-option>
-        </el-select>
+        <div class="handle-box">
+          <el-input v-model="query.min_score" placeholder="最小评分(0~10)" class="handle-input mr10"></el-input>
+          <el-input v-model="query.max_score" placeholder="最大评分(0~10)" class="handle-input mr10"></el-input>
+        </div>
+        <div class="handle-box">
+          <el-input v-model="query.min_duration" placeholder="最短时间(格式为hh:mm:ss)" class="handle-input mr10"></el-input>
+          <el-input v-model="query.max_duration" placeholder="最长时间(格式为hh:mm:ss)" class="handle-input mr10"></el-input>
+        </div>
         <el-button type="success" @click="handleSearch">搜索</el-button>
       </div>
       <el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
@@ -69,7 +75,6 @@
         <el-table-column prop="country" width="100" label="国家"></el-table-column>
         <el-table-column prop="date" width="100" label="上映时间"></el-table-column>
         <el-table-column prop="duration" width="100" label="影片时长"></el-table-column>
-
         <el-table-column label="打分" width="90" align="center">
           <template #default="scope">
             <el-button type="text" icon="el-icon-edit"
@@ -110,8 +115,10 @@ export default {
     const query = reactive({
       type: "",
       country: "",
-      grade: "",
-      duration: "",
+      min_score: "",
+      max_score: "",
+      min_duration: "",
+      max_duration: "",
       pageIndex: 1, // 当前页
       pageSize: 10, // 每页有多少项
     });
@@ -151,7 +158,7 @@ export default {
     const handleSearch = () => {
       query.pageIndex = 1;
       let sendpara = qs.stringify(query);
-      axios.post(localStorage.getItem("ip") + "personlized_select", sendpara).then(
+      axios.post(localStorage.getItem("ip") + "/movielist/combining", sendpara).then(
           function (response){
             let list = response.data.result;
             TableData.value = list;
@@ -211,6 +218,7 @@ export default {
       handleEdit,
       saveEdit,
       onReset,
+
     };
   },
 };

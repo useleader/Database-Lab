@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.List;
 
 @WebServlet("/movielist/combining")
@@ -41,11 +42,15 @@ public class SelectByCombiningServlet extends HttpServlet{
         response.setHeader("Access-Control-Allow-Headers", "token, Accept, Origin, X-Requested-With, Content-Type, Last-Modified");
         response.setContentType("application/json; charset=utf-8");
 
-//        int id = Integer.parseInt(request.getParameter("id"));
-        String director = request.getParameter("director");
-        String name = request.getParameter("name");
+
+        String tag = request.getParameter("type");
+        String region = request.getParameter("country");
+        Float min_score = Float.valueOf(request.getParameter("min_score"));
+        Float max_score = Float.valueOf(request.getParameter("max_score"));
+        Time min_duration = Time.valueOf(request.getParameter("min_duration"));
+        Time max_duration = Time.valueOf(request.getParameter("max_duration"));
         FilmDao filmDao = new FilmDao();
-        List<Film> films = filmDao.selectByDirector(director);
+        List<Film> films = filmDao.selectByCombine(tag, region, min_score, max_score, min_duration, max_duration);
 
         try {
             String jsonStr = JSON.toJSONString(films);

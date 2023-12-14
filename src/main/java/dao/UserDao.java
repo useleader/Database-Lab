@@ -19,6 +19,44 @@ import java.util.List;
 public class UserDao {
 
 
+    public int login(String username, String password) {
+        Connection conn = DBConnectionUtil.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("select password from user where name=?;");
+            pstmt.setString(1, username);
+            rs = pstmt.executeQuery();
+            String rel_pwd = rs.getString(1);
+            if (rel_pwd.equals(password)) {
+                return 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int signup(User u) {
+        int count = 0;
+        Connection conn = DBConnectionUtil.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int id = 0;
+        try{
+            pstmt = conn.prepareStatement("insert into user(name, password) values (?, ?);");  // 问号？是占位符
+            // 传递参数
+            pstmt.setString(1, u.getName());
+            pstmt.setString(2, u.getPassword());
+            // 执行insert操作，并获取被更新的行数
+            count = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnectionUtil.closeConnection(conn, pstmt, rs);
+        }
+        return count;
+    }
     public List<User> selectAll(){
         List<User> list = new ArrayList<>();
         Connection conn = DBConnectionUtil.getConnection();

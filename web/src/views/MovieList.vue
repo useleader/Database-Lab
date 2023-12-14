@@ -10,11 +10,16 @@
     <div class="container">
       <div class="handle-box">
         <el-input v-model="query.name" placeholder="电影名" class="handle-input mr10"></el-input>
-        <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
-        <el-button type="primary" icon="el-icon-plus" plain @click="(editVisible = true)">添加电影</el-button>
+        <el-button type="success" @click="handleSearch">搜索</el-button>
+        <el-button type="success" icon="el-icon-plus" plain @click="(editVisible = true)">添加电影</el-button>
       </div>
-      <el-table :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
-        <el-table-column prop="id" width="100" label="ID" align="center"></el-table-column>
+      <el-table  :data="tableData" border class="table" ref="multipleTable" header-cell-class-name="table-header">
+        <el-table-column prop="id" width="100" label="ID" align="center">
+          <template v-slot="scope">
+            <el-button type="text"
+                       @click="goToMoviePage(scope.row)">{{ scope.row.id }}</el-button>
+          </template>
+        </el-table-column>
         <el-table-column prop="name" label="电影名" align="center"></el-table-column>
         <el-table-column prop="actors" label="演员" align="center"></el-table-column>
         <el-table-column prop="director" label="导演" align="center"></el-table-column>
@@ -23,9 +28,9 @@
         <el-table-column prop="score" width="100" label="评分" align="center"></el-table-column>
         <el-table-column prop="str_duration" width="100" label="影片时长" align="center"></el-table-column>
         <el-table-column label="操作" width="90" align="center">
-          <template #default="scope">
+          <template v-slot="scope">
             <el-button type="text" icon="el-icon-delete" class="red"
-                       @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                       @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -62,16 +67,16 @@
             <el-form-item label="影片时长">
               <el-input v-model="form.duration"></el-input>
             </el-form-item>
-            <el-form-item label="ID">
-              <el-input v-model="form.alias"></el-input>
+            <el-form-item label="简介">
+              <el-input v-model="form.description"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
       </el-form>
       <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="saveEdit" type="primary" plain>确定</el-button>
-                    <el-button @click="onReset" type="primary" plain>重置</el-button>
+                    <el-button @click="saveEdit" type="success" plain>确定</el-button>
+                    <el-button @click="onReset" type="success" plain>重置</el-button>
                 </span>
       </template>
     </el-dialog>
@@ -83,6 +88,7 @@ import { ref, reactive, onMounted} from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import axios from "axios";
 import qs from "qs";
+import router from "../router";
 
 export default {
   name: "basetable",
@@ -106,7 +112,6 @@ export default {
       // 这里都不需要传参
       axios.get(localStorage.getItem("ip") + "/movielist").then(
           function (response) {
-            console.log(response)
             let list = response.data;
             TableData.value = list;
             tableData.value = list.slice(
@@ -116,11 +121,14 @@ export default {
           }
       )
     })
-
+    getData();
     // 查询操作
     const handleSearch = () => {
+      const searchName = query.name;
+      const foundRows = TableData.value.filter(row => row.name === searchName);
       query.pageIndex = 1;
-      getData();
+      tableData.value = foundRows;
+      pageTotal.value = foundRows.length;
     };
     // 分页导航
     const handlePageChange = (val) => {
@@ -129,19 +137,20 @@ export default {
     };
 
     // 删除操作
-    const handleDelete = (index, row) => {
+    const handleDelete = (row) => {
       // 二次确认删除
       ElMessageBox.confirm("确定要删除吗？", "提示", {
         type: "warning",
       })
           .then(() => {
-            let sendpara = qs.stringify(row);
-            axios.post(localStorage.getItem("ip") + "delete_movie", sendpara).then(
+            let sendpara = qs.stringify({id:row.id});
+            axios.post(localStorage.getItem("ip") + "/movielist/delete_movie", sendpara).then(
                 function (response) {
                   console.log(row);
-                  let dt = response.data.result;
-                  if (dt == true) {
+                  let dt = response.data;
+                  if (dt === 1) {
                     ElMessage.success("删除成功");
+                    location.reload();
                   } else {
                     ElMessage.error("删除失败");
                     return false;
@@ -202,12 +211,13 @@ export default {
       formRef.value.validate((valid) =>{
         if (valid){
           let sendpara = qs.stringify(form);
-          axios.post(localStorage.getItem("ip") + "insert_movie", sendpara).then(
+          axios.post(localStorage.getItem("ip") + "/movielist/insert_movie", sendpara).then(
               function (response){
                 console.log(form);
-                let dt = response.data.result;
-                if (dt === true){
+                let dt = response.data;
+                if (dt === 1){
                   ElMessage.success("添加成功");
+                  // location.reload();
                 } else {
                   ElMessage.error("添加失败");
                   return false;
@@ -243,6 +253,13 @@ export default {
       onReset,
     };
   },
+  methods: {
+    //跳转到详情页
+    goToMoviePage(row) {
+      router.push({ name: 'moviepage', params: { id: row.id } });
+    }
+  }
+
 };
 </script>
 
