@@ -174,4 +174,24 @@ public class UserDao {
         }
         return count;
     }
+
+    public int getId(String name){
+        int user_id = 0;
+        Connection conn = DBConnectionUtil.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try{
+            pstmt = conn.prepareStatement("select user_id from user where name = ?");
+            pstmt.setString(1, name);
+            rs = pstmt.executeQuery();
+            if (rs.next()){
+                user_id = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnectionUtil.closeConnection(conn, pstmt, rs);
+        }
+        return user_id;
+    }
 }

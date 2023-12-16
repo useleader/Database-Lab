@@ -37,11 +37,12 @@ import qs from "qs";
 
 
 export default {
+
   setup() {
     const router = useRouter();
     const param = reactive({
       username: "admin",
-      password: "admin",
+      password: "123456",
     });
 
     const rules = {

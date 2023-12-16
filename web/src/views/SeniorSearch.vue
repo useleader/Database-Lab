@@ -167,6 +167,7 @@ import qs from "qs";
 import router from "../router";
 
 export default {
+
   name: "basetable",
   setup() {
     const query = reactive({
@@ -187,9 +188,9 @@ export default {
 
     const my_grade = ref(null);
     const send_grade = reactive({
-      film_id: "",
-      user_id: "",
-      grade: my_grade,
+      film_id: 0,
+      user_id: 0,
+      grade: 0,
     })
 
 
@@ -222,9 +223,7 @@ export default {
     };
 
     const handleEdit = (index, row) => {
-
       send_grade.film_id = row.id;
-      send_grade.user_id =
       editVisible.value = true;
     };
 
@@ -233,12 +232,14 @@ export default {
     const saveEdit = () => {
       editVisible.value = false;
       send_grade.grade = my_grade.value * 2;
+      send_grade.user_id = localStorage.getItem("user_id");
       let sendpara = qs.stringify(send_grade);
-      axios.post(localStorage.getItem("ip") + "update_grade", sendpara).then(
+      axios.post(localStorage.getItem("ip") + "/score/insert", sendpara).then(
           function (response){
-            let dt = response.data.result;
-            if (dt === true){
+            let dt = response.data;
+            if (dt === 1){
               ElMessage.success("评分成功");
+              location.reload();
             } else {
               ElMessage.error("评分失败");
               return false;

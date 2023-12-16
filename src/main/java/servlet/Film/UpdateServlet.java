@@ -58,15 +58,9 @@ public class UpdateServlet extends HttpServlet {
         FilmDao filmDao = new FilmDao();
         //调用修改接口
         int count = filmDao.update(film);
-        String str=null;
-        if(count>0){
-            str="修改电影信息成功";
-        }else{
-            str="修改电影信息失败";
-        }
 
         try {
-            String jsonStr = JSON.toJSONString(str);
+            String jsonStr = JSON.toJSONString(count);
             response.getWriter().write(jsonStr);
         } catch (JSONException e) {
             System.out.println("Exception thrown  :" + e);

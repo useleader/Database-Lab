@@ -6,6 +6,8 @@ package servlet.User;/*
 
  */
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
 import dao.UserDao;
 import entity.User;
 
@@ -34,33 +36,31 @@ public class UpdateServlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Headers", "token, Accept, Origin, X-Requested-With, Content-Type, Last-Modified");
         response.setContentType("application/json; charset=utf-8");
 
-        int id = Integer.valueOf(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("user_id"));
         String name = request.getParameter("name");
-        String password = request.getParameter("password");
+        String password = request.getParameter("new");
         String email = request.getParameter("email");
+        String description = request.getParameter("desc");
+        String gender = request.getParameter("gender");
+        String photo = "";
 
         User user = new User();
         user.setId(id);
         user.setName(name);
         user.setPassword(password);
         user.setEmail(email);
+        user.setDescription(description);
+        user.setGender(gender);
+        user.setPhoto(photo);
 
         UserDao ud = new UserDao();
         //调用修改接口
         int count = ud.update(user);
-        String str=null;
-        if(count>0){
-            str="修改用户信息成功";
-        }else{
-            str="修改用户信息失败";
+        try {
+            String jsonStr = JSON.toJSONString(count);
+            response.getWriter().write(jsonStr);
+        } catch (JSONException e) {
+            System.out.println("Exception thrown  :" + e);
         }
-
-        PrintWriter out = response.getWriter();
-        out.print("<script>");
-        out.print("alert('" +str+ "');");
-        out.print("location.href='selectAll'");
-        out.print("</script>");
-        out.close();
-
     }
 }

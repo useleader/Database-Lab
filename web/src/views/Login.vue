@@ -63,23 +63,15 @@ export default {
         };
         const login = ref(null);
         const submitForm = () => {
-            // login.value.validate((valid) => {
-            //     if (valid) {
-            //         ElMessage.success("登录成功");
-            //         localStorage.setItem("ms_username", param.username);
-            //         router.push("/");
-            //     } else {
-            //         ElMessage.error("登录成功");
-            //         return false;
-            //     }
-            // });
             let sendpara = qs.stringify(param);
             axios.post(localStorage.getItem("ip")+"/login", sendpara).then(
                 function(response) {
-                  let ans = response.data;
+                  let ans = response.data.ans;
+                  let user_id = response.data.user_id;
                   if (ans === 1) {
                     ElMessage.success("登录成功");
                     localStorage.setItem("ms_username", param.username);
+                    localStorage.setItem("user_id", user_id);
                     router.push("/");
                   } else {
                     ElMessage.error("登录失败");

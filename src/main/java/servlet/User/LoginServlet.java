@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -42,9 +44,13 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         UserDao ud = new UserDao();
+        int user_id = ud.getId(name);
         int ans = ud.login(name, password);
+        Map<String, Integer> result = new HashMap<String, Integer>();
+        result.put("user_id", user_id);
+        result.put("ans", ans);
         try {
-            String jsonStr = JSON.toJSONString(ans);
+            String jsonStr = JSON.toJSONString(result);
             response.getWriter().write(jsonStr);
         } catch (JSONException e) {
             System.out.println("Exception thrown  :" + e);

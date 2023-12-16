@@ -42,7 +42,7 @@ public class InsertServlet extends HttpServlet {
 
         Integer film_id = Integer.valueOf(request.getParameter("film_id"));
         Integer user_id = Integer.valueOf(request.getParameter("user_id"));
-        Float number = Float.valueOf(request.getParameter("number"));
+        Float number = Float.valueOf(request.getParameter("grade"));
 
         Score s = new Score(film_id,user_id,number);
 

@@ -6,6 +6,8 @@ package servlet.User;/*
 
  */
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
 import dao.UserDao;
 import entity.User;
 
@@ -37,8 +39,12 @@ public class SelectByIdServlet extends HttpServlet {
 
         UserDao ud = new UserDao();
         User user = ud.selectById(id);
-        request.setAttribute("user_attribute", user);
-//        TODO 路径配置
-        request.getRequestDispatcher("update.jsp").forward(request,response);
+
+        try {
+            String jsonStr = JSON.toJSONString(user);
+            response.getWriter().write(jsonStr);
+        } catch (JSONException e) {
+            System.out.println("Exception thrown  :" + e);
+        }
     }
 }

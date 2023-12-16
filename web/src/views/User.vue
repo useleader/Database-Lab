@@ -15,10 +15,10 @@
                                 <i class="el-icon-lx-camerafill"></i>
                             </span>
             </div>
-            <div class="info-name">{{ name }}</div>
-            <div class="info-gender">性别: {{ form.gender }}</div>
-            <div class="info-email">邮箱: {{ form.email }}</div>
-            <div class="info-desc">I love watching movies!</div>
+            <div class="info-name">{{ user.name }}</div>
+            <div class="info-gender">性别: {{ user.gender }}</div>
+            <div class="info-email">邮箱: {{ user.email }}</div>
+            <div class="info-desc">个人简介: {{user.desc}}</div>
           </div>
         </el-card>
       </el-col>
@@ -70,10 +70,15 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import {onMounted, reactive, ref} from "vue";
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
 import avatar from "../assets/img/user.jpg";
+import { ElMessage, ElMessageBox } from "element-plus";
+import axios from "axios";
+import qs from "qs";
+import router from "../router";
+
 export default {
   name: "user",
   components: {
@@ -81,14 +86,59 @@ export default {
   },
   setup() {
     const name = localStorage.getItem("ms_username");
+    const user_id = localStorage.getItem("user_id");
     const form = reactive({
+      user_id: user_id,
+      name: name,
       gender:"",
       old: "",
       new: "",
       email:"",
       desc: "请在此输入您的个人简介",
     });
-    const onSubmit = () => {};
+    const user = ref({
+      user_id: user_id,
+      name: name,
+      gender:"",
+      password: "",
+      email:"",
+      desc: "",
+        }
+    )
+    onMounted(() => {
+      // 在组件挂载时发送请求
+      askForUser();
+    });
+
+
+
+    const askForUser = () => {
+      let sendpara = qs.stringify({id:user_id});
+      axios.post(localStorage.getItem("ip")+'/user/selectById', sendpara).then(
+          function (response) {
+            user.value.gender = response.data.gender;
+            user.value.password = response.data.password;
+            user.value.email = response.data.email;
+            user.value.desc = response.data.description;
+          }
+      )
+    };
+    askForUser();
+    const onSubmit = () => {
+      let sendpara = qs.stringify(form);
+      axios.post(localStorage.getItem("ip")+"/user/update", sendpara).then(
+          function (response){
+            let ans = response.data;
+            if (ans === 1) {
+              ElMessage.success("更新成功");
+              location.reload();
+            } else {
+              ElMessage.error("更新失败");
+              return false;
+            }
+          }
+      )
+    };
 
     const avatarImg = ref(avatar);
     const imgSrc = ref("");
@@ -137,6 +187,7 @@ export default {
       setImage,
       cropImage,
       saveAvatar,
+      user,
     };
   },
 };
