@@ -334,7 +334,7 @@ public class FilmDao {
         ResultSet rs = null;
         try{
             // score没录入
-            pstmt = conn.prepareStatement("select distinct * from film natural join tag natural join score where tag_name = ? and region = ? and (duration between ? and ?) and (number between ? and ?);");
+            pstmt = conn.prepareStatement("select distinct * from film join tag on film.film_id = tag.film_id left outer join score on score.film_id = film.film_id where tag_name = ? and region = ? and (duration between ? and ?) and (number between ? and ? or number is null);");
             pstmt.setString(1, tag);
             pstmt.setString(2, region);
             pstmt.setTime(3, min_duration);
